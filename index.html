@@ -3,37 +3,110 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Калькулятор возврата абонемента</title>
+  <title>YaYa | Калькулятор возврата</title>
   <style>
-    body { font-family: sans-serif; max-width: 500px; margin: auto; padding: 20px; }
-    label { display: block; margin-top: 10px; }
-    input { width: 100%; padding: 8px; }
-    button { margin-top: 20px; padding: 10px 20px; font-size: 16px; }
-    .result { margin-top: 20px; padding: 10px; border: 1px solid #ddd; background: #f9f9f9; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ffc1cc, #c1dfff);
+      color: #333;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 28px;
+      color: #cc3366;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #f88fb0, #89caff);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #e67196, #64b1ff);
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f4f9ff;
+      border-radius: 10px;
+      border-left: 5px solid #89caff;
+      font-size: 16px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #888;
+    }
   </style>
 </head>
 <body>
-  <h2>Калькулятор возврата</h2>
+  <div class="container">
+    <h1>YaYa 💖</h1>
 
-  <label>Стоимость абонемента (₸):
-    <input type="number" id="price" value="0" />
-  </label>
+    <label>Стоимость абонемента (₸):
+      <input type="number" id="price" value="479000" />
+    </label>
 
-  <label>Срок действия (в днях):
-    <input type="number" id="duration" value="360" />
-  </label>
+    <label>Срок действия (в днях):
+      <input type="number" id="duration" value="360" />
+    </label>
 
-  <label>Дата активации:
-    <input type="date" id="start" value="2024-04-01" />
-  </label>
+    <label>Дата активации:
+      <input type="date" id="start" value="2024-11-26" />
+    </label>
 
-  <label>Дата последнего посещения:
-    <input type="date" id="last" value="2025-01-01" />
-  </label>
+    <label>Дата последнего посещения:
+      <input type="date" id="last" value="2025-04-13" />
+    </label>
 
-  <button onclick="calculate()">Рассчитать</button>
+    <button onclick="calculate()">Рассчитать</button>
 
-  <div class="result" id="result"></div>
+    <div class="result" id="result"></div>
+    <div class="footer">by YaYa 💫</div>
+  </div>
 
 <script>
   function calculate() {
@@ -42,14 +115,9 @@
     const startDate = new Date(document.getElementById("start").value); // C
     const lastDate = new Date(document.getElementById("last").value); // D
 
-    // E = D - C (в днях)
-    const usedDays = Math.floor((lastDate - startDate) / (1000 * 60 * 60 * 24));
-
-    // F = (A / 2) + ((A / 2) / B) * E
-    const commission = Math.round((price / 2) + ((price / 2) / duration) * usedDays);
-
-    // G = A - F
-    const refund = price - commission;
+    const usedDays = Math.floor((lastDate - startDate) / (1000 * 60 * 60 * 24)); // E
+    const commission = Math.round((price / 2) + ((price / 2) / duration) * usedDays); // F
+    const refund = price - commission; // G
 
     document.getElementById("result").innerHTML = `
       <strong>Результат:</strong><br>
@@ -59,6 +127,5 @@
     `;
   }
 </script>
-
 </body>
 </html>
