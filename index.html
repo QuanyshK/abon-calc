@@ -120,12 +120,24 @@
       const duration = Number(document.getElementById("duration").value); // B
       const startDate = new Date(document.getElementById("start").value); // C
       const lastDate = new Date(document.getElementById("last").value); // D
-
+      const resultDiv = document.getElementById("result");
+  
+      // Валидация
+      if (isNaN(startDate) || isNaN(lastDate)) {
+        resultDiv.innerHTML = `<span style="color:red;"><strong>Ошибка:</strong> Укажите корректные даты.</span>`;
+        return;
+      }
+  
+      if (lastDate < startDate) {
+        resultDiv.innerHTML = `<span style="color:red;"><strong>Ошибка:</strong> Дата последнего посещения не может быть раньше даты активации.</span>`;
+        return;
+      }
+  
       const usedDays = Math.floor((lastDate - startDate) / (1000 * 60 * 60 * 24));
       const commission = Math.round((price / 2) + ((price / 2) / duration) * usedDays);
       const refund = Math.max(0, price - commission);
-
-      document.getElementById("result").innerHTML = `
+  
+      resultDiv.innerHTML = `
         <strong>Результат:</strong><br>
         Дни использования: <strong>${usedDays}</strong><br>
         Комиссия: <strong>${commission.toLocaleString()} ₸</strong><br>
