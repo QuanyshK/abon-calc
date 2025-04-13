@@ -3,91 +3,83 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YaYa | Калькулятор возврата</title>
+  <title>Калькулятор возврата — YaYa</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ffc1cc, #c1dfff);
+      background: linear-gradient(135deg, #ff9ebc, #a8d8ff);
       color: #333;
       margin: 0;
-      padding: 40px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      padding: 0;
     }
-
     .container {
+      max-width: 600px;
+      margin: 50px auto;
       background: white;
       border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       padding: 30px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      max-width: 500px;
-      width: 100%;
     }
-
     h1 {
       text-align: center;
-      margin-bottom: 20px;
-      font-size: 28px;
-      color: #cc3366;
+      color: #ff4e8b;
     }
-
     label {
       display: block;
-      margin: 12px 0 6px;
-      font-weight: 600;
+      margin-top: 15px;
+      font-weight: bold;
     }
-
     input {
       width: 100%;
       padding: 10px;
+      margin-top: 5px;
       border-radius: 8px;
       border: 1px solid #ccc;
       font-size: 16px;
     }
-
     button {
-      margin-top: 20px;
+      margin-top: 25px;
       width: 100%;
       padding: 12px;
-      font-size: 16px;
-      font-weight: bold;
-      background: linear-gradient(135deg, #f88fb0, #89caff);
-      color: white;
+      background-color: #ff4e8b;
       border: none;
       border-radius: 8px;
+      font-size: 16px;
+      color: white;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: 0.3s;
     }
-
     button:hover {
-      background: linear-gradient(135deg, #e67196, #64b1ff);
+      background-color: #e33d78;
     }
-
     .result {
-      margin-top: 20px;
+      margin-top: 25px;
+      background-color: #f1f9ff;
+      border: 1px solid #cde8ff;
+      border-radius: 8px;
       padding: 15px;
-      background: #f4f9ff;
-      border-radius: 10px;
-      border-left: 5px solid #89caff;
       font-size: 16px;
     }
-
-    .footer {
-      text-align: center;
-      margin-top: 30px;
+    .terms {
+      margin-top: 40px;
       font-size: 14px;
-      color: #888;
+      line-height: 1.6;
+      background: #fff4f9;
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 5px solid #ff4e8b;
+    }
+    .terms strong {
+      color: #ff4e8b;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>YaYa Refund Calculator</h1>
+    <h1>YaYa: Калькулятор возврата</h1>
 
     <label>Стоимость абонемента (₸):
-      <input type="number" id="price" value="479000" />
+      <input type="number" id="price" value="0" />
     </label>
 
     <label>Срок действия (в днях):
@@ -95,37 +87,52 @@
     </label>
 
     <label>Дата активации:
-      <input type="date" id="start" value="2024-11-26" />
+      <input type="date" id="start" value="2024-04-01" />
     </label>
 
     <label>Дата последнего посещения:
-      <input type="date" id="last" value="2025-04-13" />
+      <input type="date" id="last" value="2025-01-01" />
     </label>
 
     <button onclick="calculate()">Рассчитать</button>
 
     <div class="result" id="result"></div>
-    <div class="footer">by YaYa 💫</div>
+
+    <div class="terms">
+      <strong>Условия возврата:</strong><br><br>
+      1. Стоимость подписки делится на две части:
+      <ul>
+        <li>50% — невозвратная услуга активации.</li>
+        <li>50% — стоимость доступа, подлежащая возврату за неиспользованный срок.</li>
+      </ul>
+      2. Возврат возможен только при подписках сроком более одного месяца.<br>
+      3. Возврат рассчитывается пропорционально количеству дней использования.<br>
+      4. Средства возвращаются в течение 30 банковских дней.<br>
+      5. В течение первого месяца, если использовано более 100 баллов — удерживается фиксированная сумма 40 000 ₸.<br>
+      6. При рассрочке возврат возможен только по условиям соглашения.<br>
+      <br>
+      Расчёт суммы возврата можно сделать с помощью калькулятора выше.
+    </div>
   </div>
 
-<script>
-  function calculate() {
-    const price = Number(document.getElementById("price").value); // A
-    const duration = Number(document.getElementById("duration").value); // B
-    const startDate = new Date(document.getElementById("start").value); // C
-    const lastDate = new Date(document.getElementById("last").value); // D
+  <script>
+    function calculate() {
+      const price = Number(document.getElementById("price").value); // A
+      const duration = Number(document.getElementById("duration").value); // B
+      const startDate = new Date(document.getElementById("start").value); // C
+      const lastDate = new Date(document.getElementById("last").value); // D
 
-    const usedDays = Math.floor((lastDate - startDate) / (1000 * 60 * 60 * 24)); // E
-    const commission = Math.round((price / 2) + ((price / 2) / duration) * usedDays); // F
-    const refund = price - commission; // G
+      const usedDays = Math.floor((lastDate - startDate) / (1000 * 60 * 60 * 24));
+      const commission = Math.round((price / 2) + ((price / 2) / duration) * usedDays);
+      const refund = Math.max(0, price - commission);
 
-    document.getElementById("result").innerHTML = `
-      <strong>Результат:</strong><br>
-      Дни использования: <strong>${usedDays}</strong><br>
-      Комиссия: <strong>${commission.toLocaleString()} ₸</strong><br>
-      Сумма к возврату: <strong>${refund.toLocaleString()} ₸</strong>
-    `;
-  }
-</script>
+      document.getElementById("result").innerHTML = `
+        <strong>Результат:</strong><br>
+        Дни использования: <strong>${usedDays}</strong><br>
+        Комиссия: <strong>${commission.toLocaleString()} ₸</strong><br>
+        Сумма к возврату: <strong>${refund.toLocaleString()} ₸</strong>
+      `;
+    }
+  </script>
 </body>
 </html>
