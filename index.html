@@ -135,11 +135,15 @@
   
       const usedDays = Math.floor((lastDate - startDate) / (1000 * 60 * 60 * 24));
       const commission = Math.round((price / 2) + ((price / 2) / duration) * usedDays);
+      const halfcommission = Math.round(price / 2)
+      const actualcommission = commission - halfcommission
       const refund = Math.max(0, price - commission);
   
       resultDiv.innerHTML = `
         <strong>Результат:</strong><br>
         Дни использования: <strong>${usedDays}</strong><br>
+        Сумма удержания за активацию абонемента(50%): <strong>${halfcommission.toLocaleString()} ₸</strong><br>
+        Сумма удержания удержания за использованные дни: <strong>${actualcommission.toLocaleString()} ₸</strong><br>
         Комиссия: <strong>${commission.toLocaleString()} ₸</strong><br>
         Сумма к возврату: <strong>${refund.toLocaleString()} ₸</strong>
       `;
