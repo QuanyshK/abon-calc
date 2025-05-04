@@ -165,9 +165,9 @@ document.getElementById("templateRu").textContent =
 
 Дата активации абонемента — ${startDate.toLocaleDateString('ru-RU', {day: 'numeric', month: 'long', year: 'numeric'})}. На основе этого выполнен следующий расчёт:
 
-- 50% от стоимости абонемента — ₸${halfcommission.toLocaleString('ru-RU', {minimumFractionDigits: 2})}.
-- За ${usedDays} дней использования было удержано ₸${actualcommission.toLocaleString('ru-RU', {minimumFractionDigits: 2})}.
-Таким образом, сумма возврата составит ₸${refund.toLocaleString('ru-RU', {minimumFractionDigits: 2})}.
+- 50% от стоимости абонемента — ₸${halfcommission.toLocaleString('ru-RU', {minimumFractionDigits: 0})}.
+- За ${usedDays} дней использования было удержано ₸${actualcommission.toLocaleString('ru-RU', {minimumFractionDigits: 0})}.
+Таким образом, сумма возврата составит ₸${refund.toLocaleString('ru-RU', {minimumFractionDigits: 0})}.
 
 Пожалуйста, подтвердите, что ознакомились с суммой, и мы направим вам соглашение о расторжении договора.`;
 
@@ -179,9 +179,9 @@ document.getElementById("templateKz").textContent =
 
 Сізде абонементті іске қосу күні — ${startDate.toLocaleDateString('kk-KZ', {day: 'numeric', month: 'long', year: 'numeric'})}. Осыған сәйкес төмендегідей есептеу жүргізілді:
 
-Абонементтің 50% құны — ₸${halfcommission.toLocaleString('ru-RU', {minimumFractionDigits: 2})}
-${usedDays} күн пайдаланылғаны үшін ₸${actualcommission.toLocaleString('ru-RU', {minimumFractionDigits: 2})} ұсталды
-Сәйкесінше, қайтарылатын сома — ₸${refund.toLocaleString('ru-RU', {minimumFractionDigits: 2})}
+Абонементтің 50% құны — ₸${halfcommission.toLocaleString('ru-RU', {minimumFractionDigits: 0})}
+${usedDays} күн пайдаланылғаны үшін ₸${actualcommission.toLocaleString('ru-RU', {minimumFractionDigits: 0})} ұсталды
+Сәйкесінше, қайтарылатын сома — ₸${refund.toLocaleString('ru-RU', {minimumFractionDigits: 0})}
 
 Қайтару сомасымен танысқаныңызды растауыңызды сұраймыз. Осыдан кейін біз келісім-шартты бұзу туралы келісімді жолдаймыз.`;
 
