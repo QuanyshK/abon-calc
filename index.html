@@ -145,7 +145,22 @@
       const halfcommission = Math.round(price / 2)
       const actualcommission = commission - halfcommission
       const refund = Math.max(0, price - commission);
-  
+      function formatKazakhDate(date) {
+  const day = date.getDate();
+  const year = date.getFullYear();
+
+  const kazakhMonths = [
+    "қаңтар", "ақпан", "наурыз", "сәуір", "мамыр", "маусым",
+    "шілде", "тамыз", "қыркүйек", "қазан", "қараша", "желтоқсан"
+  ];
+
+  const month = kazakhMonths[date.getMonth()];
+
+  const dayEnding = ([10, 20, 30].includes(day) || [6, 9].includes(day % 10)) ? "ы" : "і";
+
+  return `${year} жылдың ${day}-${dayEnding} ${month}`;
+}
+
       resultDiv.innerHTML = `
         <strong>Результат:</strong><br>
         Дни использования: <strong>${usedDays}</strong><br>
@@ -177,8 +192,7 @@ document.getElementById("templateKz").textContent =
 Абонементті іске қосу қызметі, жалпы соманың 50%-ын құрайды және қайтарылмайды.
 Қалған 50% сомадан ұсталым нақты пайдаланылған күндер санына байланысты есептеледі.
 
-Сізде абонементті іске қосу күні — ${startDate.toLocaleDateString('kk-KZ', {day: 'numeric', month: 'long', year: 'numeric'})}. Осыған сәйкес төмендегідей есептеу жүргізілді:
-
+Сізде абонементті іске қосу күні — ${formatKazakhDate(startDate)}. Осыған сәйкес төмендегідей есептеу жүргізілді:
 Абонементтің 50% құны — ₸${halfcommission.toLocaleString('ru-RU', {minimumFractionDigits: 2})}
 ${usedDays} күн пайдаланылғаны үшін ₸${actualcommission.toLocaleString('ru-RU', {minimumFractionDigits: 2})} ұсталды
 Сәйкесінше, қайтарылатын сома — ₸${refund.toLocaleString('ru-RU', {minimumFractionDigits: 2})}
