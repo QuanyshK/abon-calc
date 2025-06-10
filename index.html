@@ -178,7 +178,7 @@ document.getElementById("templateRu").textContent =
 - Услуга активации абонемента, которая составляет 50% от общей стоимости, является невозвратной.
 - Расчёт удерживаемой от оставшихся 50% суммы производится исходя из количества фактически использованных дней абонемента.
 
-Дата активации абонемента — ${startDate.toLocaleDateString('ru-RU', {day: 'numeric', month: 'long', year: 'numeric'})}. На основе этого выполнен следующий расчёт:
+Дата активации абонемента — ${startDate.toLocaleDateString('ru-RU', {day: 'numeric', month: 'long', year: 'numeric'})} На основе этого выполнен следующий расчёт:
 
 - 50% от стоимости абонемента — ₸${halfcommission.toLocaleString('ru-RU', {minimumFractionDigits: 2})}.
 - За ${usedDays} дней использования было удержано ₸${actualcommission.toLocaleString('ru-RU', {minimumFractionDigits: 2})}.
